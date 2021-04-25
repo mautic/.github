@@ -1,0 +1,594 @@
+topics_for_assignment: false # Disable the ability to set topics on repos outside of this file
+
+teams:  # Set the teams and their members - note that nested teams are not yet supported
+  Admin:
+    members:
+      - alanhartless
+      - dongilbert
+      - escopecz
+      - npracht
+      - RCheesley
+  Core Team:
+    members:
+      - alanhartless
+      - Dcoutelle
+      - dennisameling
+      - dongilbert
+      - escopecz
+      - Gregy
+      - heathdutton
+      - kuzmany
+      - luizeof
+      - mabumusa1
+      - mautibot
+      - mohit-rocks
+      - nickveenhof
+      - npracht
+      - RCheesley
+      - saitanay
+  Product Team:
+    members:
+      - alanhartless
+      - anton-vlasenko
+      - dbhurley
+      - Dcoutelle
+      - dennisameling
+      - dongilbert
+      - escopecz
+      - fedys
+      - Gregy
+      - heathdutton
+      - hluchas
+      - jos0405
+      - kuzmany
+      - lijupm
+      - luizeof
+      - lukassykora
+      - mabumusa1
+      - mautibot
+      - mohit-rocks
+      - nickveenhof
+      - npracht
+      - p365labs
+      - RCheesley
+      - saitanay
+      - ts-navghane
+  Security Team:
+    members:
+      - alanhartless
+      - Dcoutelle
+      - dennisameling
+      - escopecz
+      - Gregy
+      - heathdutton
+      - kuzmany
+      - nickveenhof
+      - npracht
+      - RCheesley
+      - saitanay
+  Triage Team:
+    members:
+      - anton-vlasenko
+      - dennisameling
+      - fedys
+      - jos0405
+      - lijupm
+      - lukassykora
+      - mohit-rocks
+      - npracht
+      - RCheesley
+      - ts-navghane
+  Education Team Leaders:
+    members:
+      - RCheesley
+      - fakela
+  Education Team:
+    members:
+      - RCheesley
+      - fakela
+  Website Maintainers:
+    - AliciaBurrito
+    - Grienauer
+    - marcaddeo
+    - mwetmore
+    - nathandentzau
+    - nicholemaureen
+    - RCheesley
+
+repositories:
+  # Set the default rules (also applies for new repos not yet assigned to groups)
+  default:
+    teams_clean: true # Remove any existing teams
+      teams: # Add the teams who need access to all repos
+        Admin: admin
+        Security Team: maintain
+      issues:
+        auto_label: # All new issues will automatically receive these labels
+          - needs-triage
+      branches:
+        features:
+          default: true # Set the default branch to be Features
+          dismiss_stale_reviews: true # Dismiss reviews if new commits are made
+          delete_branch_on_merge: true # Delete PR branch on merge
+          enforce_admins: false # Allow admins to override the branch protection rules
+          required_approving_review_count: 2 # Require at least two approvals to merge
+          required_status_checks:
+            strict: true # PR's must be up to date with the base branch before they can be merged
+            require_review: true # At least one review is required in order to merge the PR into the base branch
+      dependency_security:
+        alerts: true # Get alerts for upstream vulnerabilities
+        automatic_fixes: true # Make PR's to resolve the upstream vulnerabilities
+      merges: # Set what kind of merges we permit
+        allow_squash_merge: true
+        allow_merge_commit: true
+        allow_rebase_merge: false
+      features:
+        has_issues: true # Enable issues
+        has_wiki: false # Disable wiki
+        has_projects: false # Disable projects
+        has_downloads: false # Disable downloads
+
+    # Rules customised for any repository specifically assigned to "core".
+    core:
+      extends: default
+      teams:
+        Product Team: pull
+        Triage Team: triage
+        Core Team: maintain
+
+    # Rules customised for any repository specifically assigned to "security".
+    security:
+      extends: default
+      teams:
+        Admin: admin
+        Security Team: maintain
+      issues:
+        auto_label:
+          - security
+
+    # Rules customised for any repository specifically assigned to "docs".
+    docs:
+      extends: default
+      teams:
+        Education Team Leaders: maintain
+        Education Team: triage
+      issues:
+        auto_label:
+          - needs-triage
+          - documentation
+
+    # Rules customised for any repository specifically assigned to "plugins".
+    plugins:
+      extends: default
+        teams:
+          Product Team: pull
+          Triage Team: triage
+          Core Team: maintain
+      features:
+        has_issues: false
+
+    # Rules customised for any repository specifically assigned to "themes".
+
+    themes:
+      extends: default
+        teams:
+          Product Team: pull
+          Triage Team: triage
+          Core Team: maintain
+      features:
+        has_issues: false
+
+    # Rules customised for any repository specifically assigned to "integrations".
+    integrations:
+      extends: default
+        teams:
+          Product Team: pull
+          Triage Team: triage
+          Core Team: maintain
+      features:
+        has_issues: true
+
+    # Rules customised for any repository specifically assigned to "website".
+    website:
+      extends: default
+        teams:
+          Website Maintainers: maintain
+      features:
+        has_issues: true
+
+  # Assign the repos to the relevant group to inherit the correct settings
+api-library: core
+mautic: core
+mautic-security: security
+core-lib: core
+core-dev: core
+core-composer-scaffold: core
+recommended-project: core
+core-recommended: core
+core-project-message: core
+mautic-documentation: docs
+developer-documentation-new: docs
+mautic-community-handbook: docs
+mautic-community-knowledgebase: docs
+documentation: docs
+plugin-helloworld: docs
+plugin-example: docs
+mautic-wordpress: integrations
+mautic-zapier: integrations
+mautic-typo3: integrations
+mautic-grav: integrations
+mautic-joomla: integrations
+mautic-saelos-bundle: integrations
+mautic-helper-chrome-extension: integrations
+mautic-concrete5: integrations
+mautic-gmail-plugin: integrations
+plugin-slooce: integrations
+language-packs: tools
+plugin-grapesjs-builder: plugins
+MauticGeneratorBundle: plugins
+plugin-messagebird: plugins
+plugin-social: plugins
+plugin-crm: plugins
+plugin-citrix: plugins
+plugin-zapier: plugins
+plugin-outlook: plugins
+plugin-gmail: plugins
+plugin-fullcontact: plugins
+plugin-focus: plugins
+plugin-emailmarketing: plugins
+plugin-cloudstorage: plugins
+plugin-clearbit: plugins
+chat: plugins
+theme-nature: theme
+theme-goldstar: theme
+theme-fresh-wide: theme
+theme-fresh-fixed: theme
+theme-vibrant: theme
+theme-sunday: theme
+theme-sparse: theme
+theme-skyline: theme
+theme-paprika: theme
+theme-oxygen: theme
+theme-neopolitan: theme
+theme-fresh-left: theme
+theme-fresh-center: theme
+theme-confirmme: theme
+theme-coffee: theme
+theme-cards: theme
+theme-brienz: theme
+theme-blank-grapejs: theme
+theme-blank: theme
+theme-aurora: theme
+theme-mauve: theme
+docker-mautic: tool
+mautic-spi: core
+grapesjs-preset-mautic: tool
+statsapp: tool
+.github: tool
+language-packer: tool
+clabot-config: tool
+composer-plugin: core
+website: website
+mautic-org-website: website
+fosdem-2021-stand-content: website
+fosdem-2021-stand-static: website
+
+labels_clean: true # Clear all existing labels
+
+labels:
+  # Labels to be applied
+
+  - name: API
+    description: Anything related to the API
+    color: b08ffc
+    repos:
+      - mautic # Available in mautic repo
+      - api-library # Available in API library
+  - name: CI
+    description: Anything related to CI (Continuous Integration)
+    color: c2e0c6
+  - name: duplicate
+    description:
+    color: d93f0b
+  - name: help-wanted
+    description: Issues where help is wanted.
+    color: d93f0b
+  - name: T1
+    description: Low difficulty to fix (issue) or test (PR)
+    color: 35b5b9
+  - name: T2
+    description: Medium difficulty to fix (issue) or test (PR)
+    color: 35b5b9
+  - name: T3
+    description: Hard difficulty to fix (issue) or test (PR)
+    color: 35b5b9
+  - name: wip
+    description: 'PR''s that are not ready for review and are currently in progress'
+    color: 006b75
+  - name: accessibility
+    description: Any issues relating to accessibility
+    color: b60205
+  - name: assets
+    description: Anything related to assets
+    color: e8c461
+    repos:
+      - mautic
+  - name: automated-tests
+    description: Anything related to unit, functional or e2e tests
+    color: e8c461
+  - name: bc-break
+    description: A BC break PR for major release milestones only
+    color: ededed
+  - name: blocked
+    description: Something blocks this PR/issue (e.g. waiting for another PR to be merged)
+    color: 0
+  - name: bounty
+    description:
+    color: 129e5e
+  - name: bug
+    description: 'Issues or PR''s relating to bugs'
+    color: e11d21
+  - name: builders
+    description: Anything related to the email or landing page builders
+    color: e8c461
+    repos:
+      - mautic
+  - name: calendar
+    description: Anything related to the calendar
+    color: e8c461
+    repos:
+      - mautic
+  - name: campaigns
+    description: Anything related to campaigns and campaign builder
+    color: e8c461
+    repos:
+      - mautic
+  - name: categories
+    description: Anything related to categories
+    color: e8c461
+    repos:
+      - mautic
+  - name: channels
+    description: Anything related to channels
+    color: e8c461
+    repos:
+      - mautic
+  - name: chore
+    description: Tasks that relate to maintaining this Github repository
+    color: b60205
+  - name: cla-signed
+    description:
+    color: ededed
+  - name: code-review
+    description: 'PR''s that require a code review before merging'
+    color: fcc4da
+  - name: companies
+    description: Anything related to companies
+    color: e8c461
+    repos:
+      - mautic
+  - name: configuration
+    description: Anything related to the Mautic configuration section
+    color: e8c461
+    repos:
+      - mautic
+  - name: contacts
+    description: Anything related to contacts
+    color: e8c461
+    repos:
+      - mautic
+  - name: dashboard
+    description: Anything related to the Dashboard
+    color: e8c461
+    repos:
+      - mautic
+  - name: dependencies
+    description: Pull requests that update a dependency file
+    color: 0366d6
+  - name: deprecation
+    description: Includes deprecations
+    color: ededed
+  - name: dynamic-content
+    description:
+    color: e8c461
+    repos:
+      - mautic
+  - name: editor
+    description: Anything related to Froala/CKEditor
+    color: e8c461
+    repos:
+      - mautic
+  - name: email
+    description: Anything related to email
+    color: e8c461
+    repos:
+      - mautic
+  - name: enhancement
+    description: Any improvement to an existing feature or functionality
+    color: 2037aa
+  - name: essential
+    description: This must be done to close the milestone
+    color: bf3631
+  - name: feature
+    description: A new feature for inclusion in minor or major releases
+    color: 1d76db
+  - name: file-uploader
+    description: Anything related to the file uploader
+    color: e8c461
+    repos:
+      - mautic
+  - name: focus-items
+    description: Anything related to focus items
+    color: e8c461
+    repos:
+      - mautic
+  - name: forms
+    description: Anything related to forms
+    color: e8c461
+    repos:
+      - mautic
+  - name: hacktoberfest
+    description: Issues that would be great for Hacktoberfest participants to work on
+    color: d67418
+  - name: hacktoberfest-accepted
+    description: 'PR''s that have been accepted for the purposes of Hacktoberfest'
+    color: d67418
+  - name: has-conflicts
+    description: Pull requests that cannot be merged until conflicts have been resolved
+    color: 0
+  - name: import-export
+    description: Anything related to importing and exporting
+    color: e8c461
+    repos:
+      - mautic
+  - name: installation
+    description: Anything related to the installation of Mautic
+    color: e8c461
+    repos:
+      - mautic
+  - name: integrations
+    description: Anything related to integrations with mail providers. Plugins have a separate label!
+    color: e8c461
+    repos:
+      - mautic
+  - name: landing-pages
+    description: Anything related to landing pages
+    color: e8c461
+    repos:
+      - mautic
+  - name: mautic-3
+    description: Related to Mautic 3
+    color: 4e5e9e
+  - name: mautic-4
+    description: Pull requests that relate to Mautic 4.x
+    color: 4e5e9e
+  - name: needs-automated-tests
+    description: 'PR''s that need automated tests before they can be merged'
+    color: b60205
+  - name: needs-documentation
+    description: 'PR''s that need documentation before they can be merged'
+    color: b60205
+  - name: needs-rebase
+    description: 'PR''s that need to be rebased'
+    color: ef3b77
+  - name: needs-triage
+    description: For new issues/PRs that need to be triaged
+    color: c5def5
+  - name: notifications
+    description: Anything related to notifications in Mautic
+    color: e8c461
+    repos:
+      - mautic
+  - name: pending-feedback
+    description: 'PR''s and issues that are awaiting feedback from the author'
+    color: fad8c7
+  - name: pending-test-confirmation
+    description: 'PR''s that require one test before they can be merged'
+    color: fef2c0
+  - name: performance-scalability
+    description: Anything related to performance and scalability
+    color: ea076d
+  - name: php
+    description: Pull requests that update PHP code
+    color: 45229e
+  - name: plugin
+    description: Anything related to plugins
+    color: e8c461
+    repos:
+      - mautic
+  - name: points-scoring
+    description: Anything related to points
+    color: e8c461
+    repos:
+      - mautic
+  - name: queue
+    description: Anything related to the queue
+    color: e8c461
+    repos:
+      - mautic
+  - name: ready-to-commit
+    description: 'PR''s with 2 successful tests, 1 approval, automated tests and docs and is ready to be merged'
+    color: 60b044
+  - name: ready-to-test
+    description: 'PR''s that are ready to test'
+    color: fbca04
+  - name: regression
+    description: A bug that broke something in the last release
+    color: c11505
+  - name: reports
+    description: Anything related to reports
+    color: e8c461
+    repos:
+      - mautic
+  - name: roles
+    description: Anything related to users and roles
+    color: e8c461
+    repos:
+      - mautic
+  - name: segments
+    description: Anything related to segments
+    color: e8c461
+    repos:
+      - mautic
+  - name: sms
+    description: Anything related to SMS
+    color: e8c461
+    repos:
+      - mautic
+  - name: social-monitoring
+    description: Anything related to social media monitoring
+    color: e8c461
+    repos:
+      - mautic
+  - name: stages
+    description: Anything related to stages
+    color: e8c461
+    repos:
+      - mautic
+  - name: stale
+    description: Issues which have not received an update within 90 days
+    color: 560d84
+  - name: strategic-initiative
+    description:
+    color: BF2353
+  - name: tags
+    description: Anything relating to tags
+    color: e8c461
+    repos:
+      - mautic
+  - name: themes
+    description: Anything related to themes
+    color: e8c461
+    repos:
+      - mautic
+  - name: tracking
+    description: Anything related to tracking
+    color: e8c461
+    repos:
+      - mautic
+  - name: translations
+    description: Anything related to translations
+    color: e8c461
+    repos:
+      - mautic
+  - name: triage-mautic-3
+    description: Need confirmation to know if relevant for Mautic 3.
+    color: ef3b77
+    repos:
+      - mautic
+  - name: user-experience
+    description: Anything related to user experience
+    color: d4c5f9
+  - name: user-interface
+    description: Anything related to user interface
+    color: bbd6f7
+  - name: webhooks
+    description: Anything related to webhooks
+    color: e8c461
+    repos:
+      - mautic
+  - name: widget
+    description: Anything related to widgets
+    color: e8c461
+    repos:
+      - mautic
