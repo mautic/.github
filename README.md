@@ -44,7 +44,7 @@ New here? Great to have you. Here’s how to get going:
 3. Read the [User Documentation](https://docs.mautic.org) and [Developer Documentation](https://developer.mautic.org). 
 4. Join our community on the [Forums](https://forum.mautic.org) or [Slack](https://mautic.org/slack). 
 5. Follow the [Mautic Blog](https://www.mautic.org/blog) for news, releases, and events.  
-6. Learn more about becoming a **Member** on the **[Membership page](https://mautic.org/become-a-member-of-mautic/)**..
+6. Learn more about becoming a Member on the **[Membership page](https://mautic.org/become-a-member-of-mautic/)**.
 
 ## Projects and Repositories
 
