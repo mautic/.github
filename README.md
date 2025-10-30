@@ -58,7 +58,7 @@ Here are key parts of the Mautic project you’ll find under this organization:
 
 Navigate to the organization’s [repositories list](https://github.com/mautic) to explore all projects.
 
-## Working Groups and Community Structure
+## Working groups and community structure
 
 The Mautic project is structured through teams and working groups which support different elements of the project’s lifecycle and community governance.  
 
