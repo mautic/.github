@@ -62,7 +62,7 @@ Navigate to the organization’s [repositories list](https://github.com/mautic) 
 
 The Mautic project is structured through teams and working groups which support different elements of the project’s lifecycle and community governance.  
 
-### Key Groups and Their Focus
+### Key groups and their focus
 
 | **Team** | **Focus** |
 |---------------------------|------------|
