@@ -131,7 +131,7 @@ Visit the [Members & Partners](https://www.mautic.org/members-partners) page for
 
 <img width="1466" height="370" alt="Mautic Partners" src="https://github.com/user-attachments/assets/a8233218-27cb-499c-ae91-1182cd0e2493" />
 
-## Community and Conduct
+## Code of conduct
 
 We want a safe, respectful, and inclusive environment for all participants.
 
