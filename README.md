@@ -8,8 +8,6 @@ This organization is home to projects, documentation, and initiatives that help 
 
 Our shared goal is to make marketing automation **open, accessible, and community-driven** — where anyone can contribute ideas, code, or creativity to help Mautic grow.
 
-
-
 ## Our mission and identity
 
 We believe in a world where marketing technology is:
@@ -17,8 +15,6 @@ We believe in a world where marketing technology is:
 - **Open:** Free to use, study, and improve, without unnecessary vendor constraints.  
 - **Collaborative:** Built by a diverse global community of marketers, developers, and users.  
 - **Privacy-focused and digitally sovereign:** You keep control (your own database, your infrastructure).
-
-
 
 ## Brief history and governance
 
@@ -29,8 +25,6 @@ Over time, it evolved into a **community-led open source project**.
 - **[The Mautic Council](https://contribute.mautic.org/en/latest/governance/mautic-council.html)** and teams help with governance, strategy, and operations.  
 - Learn more about governance on the Mautic [Governance](https://mautic.org/governance) page.
 
-
-
 ## What we do
 
 Mautic brings together developers, marketers, documentation writers, designers, and contributors to:
@@ -40,8 +34,6 @@ Mautic brings together developers, marketers, documentation writers, designers, 
 - **Support Learning and Documentation:** Help new users, maintain guides, improve clarity.  
 - **Foster Community and Events:** Run forums, conferences (e.g., the Mautic World Conference), and meetups.  
 - **Promote Open Marketing Standards and Privacy:** Champion principles of digital sovereignty and user privacy.  
-
-
 
 ## Getting Started
 
@@ -54,8 +46,6 @@ New here? Great to have you. Here’s how to get going:
 5. Follow the [Mautic Blog](https://www.mautic.org/blog) for news, releases, and events.  
 6. Learn more about becoming a **Member** on the **[Membership page](https://mautic.org/become-a-member-of-mautic/)**..
 
-
-
 ## Projects and Repositories
 
 Here are key parts of the Mautic project you’ll find under this organization:
@@ -67,8 +57,6 @@ Here are key parts of the Mautic project you’ll find under this organization:
 - **Community Resources** — [Community Handbook](https://github.com/mautic/mautic-community-handbook), [Blog](https://mautic.org/blog/), designs. 
 
 Navigate to the organization’s [repositories list](https://github.com/mautic) to explore all projects.
-
-
 
 ## Working Groups and Community Structure
 
@@ -86,8 +74,6 @@ The Mautic project is structured through teams and working groups which support 
 | **Working Groups** | Project-specific or domain-specific collaborations.<br> |
 
 Join the Mautic [Slack](https://mautic.org/slack) or Community [Forum](https://forum.mautic.org) for more info.
-
-
 
 ## Get Involved
 
@@ -136,8 +122,6 @@ To become a Partner, your organization must be a **corporate member (Community T
 
 Learn more about becoming a partner on the [Become a Mautic Partner](https://www.mautic.org/become-a-mautic-partner) page.
 
-
-
 ### Our Members and Partners
 
 We’re grateful to the organizations that support Mautic through membership, partnership, and sponsorship.  
@@ -147,8 +131,6 @@ Visit the [Members & Partners Directory](https://www.mautic.org/members-partners
 
 <img width="1466" height="370" alt="Mautic Partners" src="https://github.com/user-attachments/assets/a8233218-27cb-499c-ae91-1182cd0e2493" />
 
-
-
 ## Community and Conduct
 
 We want a safe, respectful, and inclusive environment for all participants.
@@ -156,8 +138,6 @@ We want a safe, respectful, and inclusive environment for all participants.
 Please review and follow the [Code of Conduct](https://contribute.mautic.org/en/latest/code-of-conduct.html) — it governs behaviour across forums, repositories, Slack, and events.
 
 Community participation is powered by people from all around the world.
-
-
 
 ## Contact and Community Channels
 
@@ -171,8 +151,6 @@ Community participation is powered by people from all around the world.
 - 🧵 [Threads](https://threads.net/@mauticcommunity)
 - 📸 [Instagram](https://instagram.com/MauticCommunity)
 - 💸 [Open Collective](https://opencollective.com/mautic)
-
-
 
 ## 💖 Thank you
 
