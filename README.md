@@ -154,7 +154,7 @@ Community participation is powered by people from all around the world.
 
 ## 💖 Thank you
 
-Thank you for being part of the **Mautic ecosystem**.  
+Thank you for being part of Mautic.  
 Your involvement makes Mautic stronger, more inclusive, and more useful for everyone.
 
 Let’s keep building open, responsible, and powerful marketing automation together.
