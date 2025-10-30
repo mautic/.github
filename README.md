@@ -135,7 +135,7 @@ Visit the [Members & Partners](https://www.mautic.org/members-partners) page for
 
 We want a safe, respectful, and inclusive environment for all participants.
 
-Please review and follow the [Code of Conduct](https://contribute.mautic.org/en/latest/code-of-conduct.html) — it governs behaviour across forums, repositories, Slack, and events.
+Please review and follow Mautic's [Code of Conduct](https://contribute.mautic.org/en/latest/code-of-conduct.html) — it governs behaviour across Forums, repositories, Slack, and events.
 
 Community participation is powered by people from all around the world.
 
