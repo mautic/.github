@@ -23,7 +23,7 @@ Over time, it evolved into a **community-led open source project**.
 
 - Mautic’s finances and sponsorships are handled transparently via **[Open Collective](https://opencollective.com/mautic)**.  
 - **[The Mautic Council](https://contribute.mautic.org/en/latest/governance/mautic-council.html)** and teams help with governance, strategy, and operations.  
-- Learn more about governance on the Mautic [Governance](https://mautic.org/governance) page.
+- Learn more about governance on the [Mautic Governance](https://mautic.org/governance) page.
 
 ## What we do
 
