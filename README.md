@@ -112,7 +112,7 @@ Your donations help us maintain tools and fund new initiatives. You can support 
 
 Every contribution helps us move closer to our mission. You can support Mautic on [Open Collective](https://opencollective.com/mautic) or visit the [Sponsor Mautic](https://mautic.org/sponsor-mautic/) page to learn more about how to sponsor.
 
-### Partner With Us
+### Become a Mautic Partner
 
 Mautic Partners are organizations that actively support and contribute to the project — both financially and practically.
 
