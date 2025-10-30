@@ -116,7 +116,7 @@ Every contribution helps us move closer to our mission. You can support Mautic o
 
 Mautic Partners are organizations that actively support and contribute to the project — both financially and practically.
 
-Partners gain visibility in the Members and Partners directory, access to exclusive collaboration opportunities, and recognition across Mautic events and platforms.
+Partners gain visibility in the [Members & Partners](https://www.mautic.org/members-partners) page, access to exclusive collaboration opportunities, and recognition across Mautic events and platforms.
 
 To become a Partner, your organization must be a **corporate member (Community Tier or above)** and show **at least three months of consistent contribution** to Mautic.  
 
