@@ -94,7 +94,7 @@ Start by checking [good first issues](https://github.com/mautic/mautic/contribut
 
 ### Become a Member
 
-Join the community today! As a member, you will:
+Join Mautic today! As a member, you're able to:
 
 - Get early access to updates and events. 
 - Contribute ideas and feedback to guide our roadmap. 
