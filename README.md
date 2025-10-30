@@ -37,7 +37,7 @@ Mautic brings together developers, marketers, documentation writers, designers, 
 
 ## Getting started
 
-New here? Great to have you. Here’s how to get going:
+New here? Great to have you! Here’s how to get going:
  
 1. Visit the [Mautic official website](https://www.mautic.org).  
 2. [Download or self-host Mautic](https://github.com/mautic/mautic) — run it on your own infrastructure.  
