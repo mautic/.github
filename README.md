@@ -152,7 +152,7 @@ Community participation is powered by people from all around the world.
 - 📸 [Instagram](https://instagram.com/MauticCommunity)
 - 💸 [Open Collective](https://opencollective.com/mautic)
 
-## 💖 Thank you
+---
 
 Thank you for being part of Mautic.  
 Your involvement makes Mautic stronger, more inclusive, and more useful for everyone.
