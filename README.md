@@ -110,7 +110,7 @@ Your donations help us maintain tools and fund new initiatives. You can support 
 - Monthly sponsorships.  
 - Corporate sponsorships.
 
-Every contribution helps us move closer to our mission. You can support Mautic on [Open Collective](https://opencollective.com/mautic) or [learn more](https://mautic.org/sponsor-mautic/) about how to sponsor.
+Every contribution helps us move closer to our mission. You can support Mautic on [Open Collective](https://opencollective.com/mautic) or visit the [Sponsor Mautic](https://mautic.org/sponsor-mautic/) page to learn more about how to sponsor.
 
 ### Partner With Us
 
