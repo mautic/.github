@@ -102,7 +102,7 @@ Join Mautic today! As a member, you're able to:
 
 Membership is open to everyone. Visit the [Become a Member](https://mautic.org/become-a-member-of-mautic/) page to join.
 
-### Financial Support
+### Financial support
 
 Your donations help us maintain tools and fund new initiatives. You can support Mautic through:
 
