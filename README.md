@@ -10,7 +10,7 @@ Our shared goal is to make marketing automation **open, accessible, and communit
 
 
 
-## Our Mission and Identity
+## Our mission and identity
 
 We believe in a world where marketing technology is:
 
