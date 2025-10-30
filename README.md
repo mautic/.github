@@ -75,7 +75,7 @@ The Mautic project is structured through teams and working groups which support 
 
 Join the Mautic [Slack](https://mautic.org/slack) or Community [Forum](https://forum.mautic.org) for more info.
 
-## Get Involved
+## Get involved
 
 There are many ways to support and grow the Mautic community.
 
