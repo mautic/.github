@@ -4,7 +4,7 @@
 
 **Mautic** is an open source marketing automation platform empowering organizations to build meaningful connections with their audiences through data-driven engagement.
 
-This organization is home to projects, documentation, and initiatives that help maintain, extend, and improve Mautic for everyone.
+Our organization is home to projects, documentation, and initiatives that help maintain, extend, and improve Mautic for everyone.
 
 Our shared goal is to make marketing automation **open, accessible, and community-driven** — where anyone can contribute ideas, code, or creativity to help Mautic grow.
 
