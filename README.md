@@ -46,7 +46,7 @@ New here? Great to have you. Here’s how to get going:
 5. Follow the [Mautic Blog](https://www.mautic.org/blog) for news, releases, and events.  
 6. Learn more about becoming a Member on the **[Membership page](https://mautic.org/become-a-member-of-mautic/)**.
 
-## Projects and Repositories
+## Projects and repositories
 
 Here are key parts of the Mautic project you’ll find under this organization:
 
