@@ -35,7 +35,7 @@ Mautic brings together developers, marketers, documentation writers, designers, 
 - **Foster Community and Events:** Run forums, conferences (e.g., the Mautic World Conference), and meetups.  
 - **Promote Open Marketing Standards and Privacy:** Champion principles of digital sovereignty and user privacy.  
 
-## Getting Started
+## Getting started
 
 New here? Great to have you. Here’s how to get going:
  
