@@ -20,7 +20,7 @@ We believe in a world where marketing technology is:
 
 
 
-## Brief History and Governance
+## Brief history and governance
 
 Mautic was founded in **2014** by **David Hurley**.  
 Over time, it evolved into a **community-led open source project**.
