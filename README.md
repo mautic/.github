@@ -127,7 +127,7 @@ Learn more about becoming a partner on the [Become a Mautic Partner](https://www
 We’re grateful to the organizations that support Mautic through membership, partnership, and sponsorship.  
 Their contributions sustain the project and help it grow.
 
-Visit the [Members & Partners Directory](https://www.mautic.org/members-partners) for the full list.
+Visit the [Members & Partners](https://www.mautic.org/members-partners) page for the full list.
 
 <img width="1466" height="370" alt="Mautic Partners" src="https://github.com/user-attachments/assets/a8233218-27cb-499c-ae91-1182cd0e2493" />
 
