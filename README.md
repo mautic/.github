@@ -139,7 +139,7 @@ Please review and follow Mautic's [Code of Conduct](https://contribute.mautic.or
 
 Community participation is powered by people from all around the world.
 
-## Contact and Community Channels
+## Contact and community channels
 
 - 💬 [Slack](https://mautic.org/slack)
 - 📝 [Forum](https://forum.mautic.org)
