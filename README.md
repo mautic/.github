@@ -31,9 +31,9 @@ Mautic brings together developers, marketers, documentation writers, designers, 
 
 - **Maintain the Mautic Core:** The main [Mautic](https://github.com/mautic/mautic) open source application. 
 - **Develop Plugins and Integrations:** Extend to CRMs, CMSs, email services, and more.
-- **Support Learning and Documentation:** Help new users, maintain guides, improve clarity.  
-- **Foster Community and Events:** Run forums, conferences (e.g., the Mautic World Conference), and meetups.  
-- **Promote Open Marketing Standards and Privacy:** Champion principles of digital sovereignty and user privacy.  
+- **Support learning and documentation:** Help new users, maintain guides, improve clarity.  
+- **Foster community and events:** Run forums, conferences (e.g., the Mautic World Conference), and meetups.  
+- **Promote open marketing standards and privacy:** Champion principles of digital sovereignty and user privacy.  
 
 ## Getting started
 
