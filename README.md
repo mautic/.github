@@ -90,7 +90,7 @@ You don’t have to be a developer — every contribution counts:
 - 🌐 Help manage community spaces or moderate discussions.  
 - 📚 Teach, mentor, or host local meetups. 
 
-Start by checking [good first issues](https://github.com/mautic/mautic/contribute) on GitHub or joining discussions on the [Slack channel](https://mautic.org/slack) or [forums](https://forum.mautic.org).
+Start by checking [good first issues](https://github.com/mautic/mautic/contribute) on GitHub or joining discussions on the [Slack channel](https://mautic.org/slack) or [Forums](https://forum.mautic.org).
 
 ### Become a Member
 
