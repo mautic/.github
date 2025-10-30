@@ -100,7 +100,7 @@ Join Mautic today! As a member, you're able to:
 - Contribute ideas and feedback to guide our roadmap. 
 - Collaborate with other passionate members.  
 
-Membership is open to everyone. Visit the [membership](https://mautic.org/become-a-member-of-mautic/) page to join.
+Membership is open to everyone. Visit the [Become a Member](https://mautic.org/become-a-member-of-mautic/) page to join.
 
 ### Financial Support
 
