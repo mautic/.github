@@ -41,7 +41,7 @@ New here? Great to have you! Here’s how to get going:
  
 1. Visit the [Mautic official website](https://www.mautic.org).  
 2. [Download or self-host Mautic](https://github.com/mautic/mautic) — run it on your own infrastructure.  
-3. Read the [User Documentation](https://docs.mautic.org) and [Developer Documentation](https://developer.mautic.org). 
+3. Read the [User Documentation](https://docs.mautic.org) and [Developer Documentation](https://devdocs.mautic.org). 
 4. Join our community on the [Forums](https://forum.mautic.org) or [Slack](https://mautic.org/slack). 
 5. Follow the [Mautic Blog](https://www.mautic.org/blog) for news, releases, and events.  
 6. Learn more about becoming a Member on the **[Membership page](https://mautic.org/become-a-member-of-mautic/)**.
