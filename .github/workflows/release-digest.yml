@@ -1,0 +1,135 @@
+name: Release Digest
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Runs every day at 9:00 AM UTC
+  workflow_dispatch:
+
+env:
+  TARGET_REPO: mautic/mautic
+
+jobs:
+  check-milestones:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check milestones
+        id: check
+        run: |
+          TODAY=$(date -u +"%Y-%m-%d")
+          echo "Checking milestones for: $TODAY"
+
+          MILESTONES=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ env.TARGET_REPO }}/milestones?state=open&per_page=100")
+
+          get_date_offset() {
+            date -u -d "+$1 days" +"%Y-%m-%d"
+          }
+
+          DATE_0=$(get_date_offset 0)
+          DATE_1=$(get_date_offset 1)
+          DATE_7=$(get_date_offset 7)
+          DATE_14=$(get_date_offset 14)
+
+          filter_milestones() {
+            echo "$MILESTONES" | jq --arg date "$1" '
+              [.[] | select(.due_on != null and (.due_on | startswith($date)))]
+            '
+          }
+
+          DUE_0=$(filter_milestones "$DATE_0")
+          DUE_1=$(filter_milestones "$DATE_1")
+          DUE_7=$(filter_milestones "$DATE_7")
+          DUE_14=$(filter_milestones "$DATE_14")
+
+          echo "due_today=$(echo $DUE_0 | jq -c .)"   >> $GITHUB_OUTPUT
+          echo "due_1=$(echo $DUE_1 | jq -c .)"       >> $GITHUB_OUTPUT
+          echo "due_7=$(echo $DUE_7 | jq -c .)"       >> $GITHUB_OUTPUT
+          echo "due_14=$(echo $DUE_14 | jq -c .)"     >> $GITHUB_OUTPUT
+
+          echo "count_today=$(echo $DUE_0 | jq 'length')"   >> $GITHUB_OUTPUT
+          echo "count_1=$(echo $DUE_1 | jq 'length')"       >> $GITHUB_OUTPUT
+          echo "count_7=$(echo $DUE_7 | jq 'length')"       >> $GITHUB_OUTPUT
+          echo "count_14=$(echo $DUE_14 | jq 'length')"     >> $GITHUB_OUTPUT
+
+      - name: Build Slack message
+        if: |
+          steps.check.outputs.count_today > 0 ||
+          steps.check.outputs.count_1 > 0 ||
+          steps.check.outputs.count_7 > 0 ||
+          steps.check.outputs.count_14 > 0
+        id: message
+        run: |
+          build_section() {
+            local MILESTONES="$1"
+            local HEADER="$2"
+
+            echo "$MILESTONES" | jq -c --arg header "$HEADER" '
+              if length == 0 then []
+              else
+                [
+                  {
+                    "type": "header",
+                    "text": {
+                      "type": "plain_text",
+                      "text": $header
+                    }
+                  },
+                  {
+                    "type": "divider"
+                  }
+                ] +
+                [.[] |
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": (
+                        "Milestone name: *<" + .html_url + "|" + .title + ">*\n" +
+                        "\n🟡 Open issues/PRs: " + (.open_issues | tostring) +
+                        "\n✅ Closed issues/PRs: " + (.closed_issues | tostring) +
+                        if .description != null and .description != ""
+                          then "\n\n" + .description
+                          else ""
+                        end +
+                        "\n\n<" + .html_url + "|🔗 View Milestone>"
+                      )
+                    },
+                    "accessory": {
+                      "type": "button",
+                      "text": { "type": "plain_text", "text": "View Milestone" },
+                      "url": .html_url
+                    }
+                  }
+                ]
+              end
+            '
+          }
+
+          SECTION_TODAY=$(build_section '${{ steps.check.outputs.due_today }}' "🚀 Release Digest — Due Today")
+          SECTION_1=$(build_section     '${{ steps.check.outputs.due_1 }}'     "🔔 Release Digest — Due Tomorrow")
+          SECTION_7=$(build_section     '${{ steps.check.outputs.due_7 }}'     "⚠️ Release Digest — Due in 1 Week")
+          SECTION_14=$(build_section    '${{ steps.check.outputs.due_14 }}'    "⏳ Release Digest — Due in 2 Weeks")
+
+          BLOCKS=$(jq -cn \
+            --argjson s0  "$SECTION_TODAY" \
+            --argjson s1  "$SECTION_1" \
+            --argjson s7  "$SECTION_7" \
+            --argjson s14 "$SECTION_14" \
+            '$s14 + $s7 + $s1 + $s0'
+          )
+
+          echo "blocks=$(echo $BLOCKS | jq -c .)" >> $GITHUB_OUTPUT
+
+      - name: Send Slack notification
+        if: |
+          steps.check.outputs.count_today > 0 ||
+          steps.check.outputs.count_1 > 0 ||
+          steps.check.outputs.count_7 > 0 ||
+          steps.check.outputs.count_14 > 0
+        run: |
+          curl -s -X POST "${{ secrets.SLACK_RELEASE_DIGEST_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"blocks\": $(echo '${{ steps.message.outputs.blocks }}')}"
