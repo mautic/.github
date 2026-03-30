@@ -1,0 +1,89 @@
+name: Release Digest
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Runs every day at 9:00 AM UTC
+  workflow_dispatch:
+
+env:
+  TARGET_REPO: mautic/mautic
+
+jobs:
+  check-milestones:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check milestones due today
+        id: check
+        run: |
+          TODAY=$(date -u +"%Y-%m-%d")
+          echo "Checking milestones due on: $TODAY"
+
+          MILESTONES=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ env.TARGET_REPO }}/milestones?state=open&per_page=100")
+
+          DUE_TODAY=$(echo "$MILESTONES" | jq --arg today "$TODAY" '
+            [.[] | select(.due_on != null and (.due_on | startswith($today)))]
+          ')
+
+          COUNT=$(echo "$DUE_TODAY" | jq 'length')
+          echo "Milestones due today: $COUNT"
+
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          echo "milestones=$(echo $DUE_TODAY | jq -c .)" >> $GITHUB_OUTPUT
+
+      - name: Build Slack message
+        if: steps.check.outputs.count > 0
+        id: message
+        run: |
+          MILESTONES='${{ steps.check.outputs.milestones }}'
+          REPO="${{ env.TARGET_REPO }}"
+
+          BLOCKS=$(echo "$MILESTONES" | jq -c --arg repo "$REPO" '
+            [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "🚀 Release Digest — Due Today"
+                }
+              },
+              {
+                "type": "divider"
+              }
+            ] +
+            [.[] |
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": (
+                    "Milestone name: *<" + .html_url + "|" + .title + ">*\n" +
+                    "\n🟡 Open issues/PRs: " + (.open_issues | tostring) +
+                    "\n✅ Closed issues/PRs: " + (.closed_issues | tostring) +
+                    if .description != null and .description != ""
+                      then "\n\n" + .description
+                      else ""
+                    end +
+                    "\n\n<" + .html_url + "|🔗 View Milestone>"
+                  )
+                },
+                "accessory": {
+                  "type": "button",
+                  "text": { "type": "plain_text", "text": "View Milestone" },
+                  "url": .html_url
+                }
+              }
+            ]
+          ')
+
+          echo "blocks=$(echo $BLOCKS | jq -c .)" >> $GITHUB_OUTPUT
+
+      - name: Send Slack notification
+        if: steps.check.outputs.count > 0
+        run: |
+          curl -s -X POST "${{ secrets.SLACK_RELEASE_DIGEST_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"blocks\": $(echo '${{ steps.message.outputs.blocks }}')}"
