@@ -93,8 +93,7 @@ jobs:
                         if .description != null and .description != ""
                           then "\n\n" + .description
                           else ""
-                        end +
-                        "\n\n<" + .html_url + "|🔗 View Milestone>"
+                        end
                       )
                     },
                     "accessory": {
