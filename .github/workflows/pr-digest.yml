@@ -148,12 +148,6 @@ jobs:
 
             core.setOutput('payload', JSON.stringify(payload));
 
-      - name: Debug Slack payload
-        env:
-          PAYLOAD: ${{ steps.digest.outputs.payload }}
-        run: |
-          printf '%s\n' "$PAYLOAD"
-
       - name: Send to Slack
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_PR_DIGEST_WEBHOOK_URL }}
