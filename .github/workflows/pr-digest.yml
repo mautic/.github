@@ -1,0 +1,164 @@
+name: PR Digest
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * 5' # Friday at 09:00 UTC
+
+jobs:
+  pr-digest:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Build Slack payload
+        id: digest
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = 'mautic';
+            const repo = 'mautic';
+
+            const trackedLabels = [
+              'code-review-needed',
+              'ready-to-test',
+              'pending-test-confirmation'
+            ];
+
+            const excludedLabels = [
+              'blocked',
+              'has-conflicts',
+              'needs-automated-tests',
+              'needs-documentation',
+              'needs-rebase',
+              'pending-feedback',
+              'WIP'
+            ];
+
+            const labelTitles = {
+              'code-review-needed': '👀 Code review needed',
+              'ready-to-test': '🧪 Ready to test',
+              'pending-test-confirmation': '⏳ Needs 1 more user test'
+            };
+
+            const grouped = Object.fromEntries(
+              trackedLabels.map(label => [label, []])
+            );
+
+            const prs = await github.paginate(
+              github.rest.pulls.list,
+              {
+                owner,
+                repo,
+                state: 'open',
+                per_page: 100
+              }
+            );
+
+            for (const pr of prs) {
+              // Exclude draft PRs
+              if (pr.draft) {
+                continue;
+              }
+
+              const labels = (pr.labels || []).map(l => l.name);
+
+              if (labels.some(label => excludedLabels.includes(label))) {
+                continue;
+              }
+
+              for (const label of trackedLabels) {
+                if (labels.includes(label)) {
+                  grouped[label].push({
+                    number: pr.number,
+                    title: pr.title,
+                    url: pr.html_url,
+                    author: pr.user?.login || 'unknown'
+                  });
+                }
+              }
+            }
+
+            const truncate = (text, max) => {
+              if (text.length <= max) {
+                return text;
+              }
+              return text.slice(0, max - 1) + '…';
+            };
+
+            const MAX_ITEMS_PER_SECTION = 20;
+            const MAX_SECTION_TEXT = 2900;
+
+            let total = 0;
+
+            const blocks = [
+              {
+                type: 'header',
+                text: {
+                  type: 'plain_text',
+                  text: 'PR digest'
+                }
+              },
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: '*Here are open PRs that need code review or testing before they can be merged.*\nPlease help by reviewing or testing them 🙌'
+                }
+              }
+            ];
+
+            for (const label of trackedLabels) {
+              const items = grouped[label];
+              total += items.length;
+
+              let lines = [];
+
+              for (const pr of items.slice(0, MAX_ITEMS_PER_SECTION)) {
+                lines.push(`• <${pr.url}|#${pr.number}> ${pr.title} _(@${pr.author})_`);
+              }
+
+              if (items.length === 0) {
+                lines = ['_No open PRs in this group._'];
+              } else if (items.length > MAX_ITEMS_PER_SECTION) {
+                lines.push(`_…and ${items.length - MAX_ITEMS_PER_SECTION} more._`);
+              }
+
+              let sectionText = `*${labelTitles[label]}* (${items.length})\n${lines.join('\n')}`;
+              sectionText = truncate(sectionText, MAX_SECTION_TEXT);
+
+              blocks.push({
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: sectionText
+                }
+              });
+            }
+
+            const payload = {
+              text: `Mautic PR digest: ${total} tracked PRs`,
+              blocks,
+              unfurl_links: false,
+              unfurl_media: false
+            };
+
+            core.setOutput('payload', JSON.stringify(payload));
+
+      - name: Send to Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_PR_DIGEST_WEBHOOK_URL }}
+          PAYLOAD: ${{ steps.digest.outputs.payload }}
+        run: |
+          response=$(curl -sS -X POST \
+            -H 'Content-type: application/json' \
+            --data "$PAYLOAD" \
+            "$SLACK_WEBHOOK_URL")
+
+          echo "Slack response: $response"
+
+          test "$response" = "ok"
