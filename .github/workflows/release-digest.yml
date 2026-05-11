@@ -61,6 +61,11 @@ jobs:
           steps.check.outputs.count_7 > 0 ||
           steps.check.outputs.count_14 > 0
         id: message
+        env:
+          DUE_TODAY: ${{ steps.check.outputs.due_today }}
+          DUE_3: ${{ steps.check.outputs.due_3 }}
+          DUE_7: ${{ steps.check.outputs.due_7 }}
+          DUE_14: ${{ steps.check.outputs.due_14 }}
         run: |
           build_section() {
             local MILESTONES="$1"
@@ -107,10 +112,10 @@ jobs:
             '
           }
 
-          SECTION_TODAY=$(build_section '${{ steps.check.outputs.due_today }}' "🚀 Release Digest — Due Today")
-          SECTION_3=$(build_section     '${{ steps.check.outputs.due_3 }}'     "🔔 Release Digest — Due in 3 Days")
-          SECTION_7=$(build_section     '${{ steps.check.outputs.due_7 }}'     "⚠️ Release Digest — Due in 1 Week")
-          SECTION_14=$(build_section    '${{ steps.check.outputs.due_14 }}'    "⏳ Release Digest — Due in 2 Weeks")
+          SECTION_TODAY=$(build_section "$DUE_TODAY" "🚀 Release Digest — Due Today")
+          SECTION_3=$(build_section     "$DUE_3"     "🔔 Release Digest — Due in 3 Days")
+          SECTION_7=$(build_section     "$DUE_7"     "⚠️ Release Digest — Due in 1 Week")
+          SECTION_14=$(build_section    "$DUE_14"    "⏳ Release Digest — Due in 2 Weeks")
 
           BLOCKS=$(jq -cn \
             --argjson s0  "$SECTION_TODAY" \
@@ -128,7 +133,10 @@ jobs:
           steps.check.outputs.count_3 > 0 ||
           steps.check.outputs.count_7 > 0 ||
           steps.check.outputs.count_14 > 0
+        env:
+          SLACK_BLOCKS: ${{ steps.message.outputs.blocks }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_RELEASE_DIGEST_WEBHOOK_URL }}
         run: |
-          curl -s -X POST "${{ secrets.SLACK_RELEASE_DIGEST_WEBHOOK_URL }}" \
+          curl -s -X POST "$SLACK_WEBHOOK" \
             -H "Content-Type: application/json" \
-            -d "{\"blocks\": $(echo '${{ steps.message.outputs.blocks }}')}"
+            -d "{\"blocks\": $SLACK_BLOCKS}"
